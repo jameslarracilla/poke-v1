@@ -46,7 +46,9 @@ const pluginsWebpack: Array<WebpackPluginInstance> = [
   new MiniCssExtractPlugin({
     filename: 'main.css',
   }),
-  new Dotenv(),
+  new Dotenv({
+    systemvars: true,
+  }),
 ];
 
 export const configCommonWebpack = (env: any, arg: any): Configuration => {
