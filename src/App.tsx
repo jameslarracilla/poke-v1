@@ -18,6 +18,8 @@ const initLoginState: LoginState = {
 };
 
 const App = () => {
+  console.log(process.env.URL_AUTH);
+
   const [userLogged, setUserLogged] = useState<LoginState>({
     ...initLoginState,
   });
