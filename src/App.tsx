@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Home } from './layout/Home';
 import { GlobalStyle } from './__core__/components/GlobalStyle';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Landing } from './pages/Landing';
 import { Auth } from './pages/Auth';
 import { BattleField } from './pages/BattleField';
@@ -61,6 +61,8 @@ const App = () => {
                 />
               }
             />
+
+            <Route path="*" element={<Navigate to="/" />} />
           </Route>
         </Routes>
       </BrowserRouter>
