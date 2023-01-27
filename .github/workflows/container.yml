@@ -6,9 +6,6 @@ on:
   pull_request:
     branches: [ "main" ]
 
-env:
-  URL_AUTH: jamesisandurl 
-
 jobs:
   docker:
     runs-on: ubuntu-latest
@@ -31,3 +28,19 @@ jobs:
         with:
           push: true
           tags: joselarracilla/poke-mon:latest
+          
+      -
+        name: deploy to cluster
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          command: set image --record deployment/poke-mon-deployment pokemon=joselarracilla/poke-mon
+      - 
+        name: verify deployment
+        uses: steebchen/kubectl@v2.0.0
+        with:
+          config: ${{ secrets.KUBE_CONFIG_DATA }}
+          version: v1.21.0
+          binaries-url: "https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl"
+          command: rollout status deployment/poke-mon-deployment
+        
