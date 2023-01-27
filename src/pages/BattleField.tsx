@@ -36,13 +36,17 @@ const ButtonFight = styled(Button)`
   }
 `;
 
+interface BattleFieldProps {
+  
+};
+
 export const BattleField = () => {
   const [battlePokemons, setBattlePokemons] = useState<Array<Pokemon>>([]);
 
   const onCatchPokemon = async (pokemonId: string) => {
-    const URL_POKE_CATCH = process.env.URL_POKE_CATCH as string;
+    const URL_POKE_CATCH = process.env.NODE_ENV === 'development' ? process.env.URL_POKE_CATCH as string : '/api/battlefield';
     await axios.post(URL_POKE_CATCH, {
-      name: 'james',
+      id: 'james',
       pokemonId,
     });
 
@@ -53,7 +57,7 @@ export const BattleField = () => {
 
   useEffect(() => {
     const getBattlefieldPokemons = async () => {
-      const URL_BATTLEFIELD = process.env.URL_BATTLEFIELD as string;
+      const URL_BATTLEFIELD = process.env.NODE_ENV === 'development' ? process.env.URL_BATTLEFIELD as string : '/api/battlefield';
       const response = await axios(URL_BATTLEFIELD);
       setBattlePokemons(response.data);
     };
