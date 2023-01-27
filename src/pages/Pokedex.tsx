@@ -32,8 +32,11 @@ export const Pokedex: React.FC<PokedexProps> = ({ user }) => {
 
   useEffect(() => {
     const getUserPokedex = async () => {
-      const URL_POKEDEX = process.env.URL_POKEDEX as string;
-      const response = await axios.get(URL_POKEDEX);
+      const URL_POKEDEX =
+        process.env.NODE_ENV === 'development'
+          ? (process.env.URL_POKEDEX as string)
+          : '/api/pokedex';
+      const response = await axios.get(`${URL_POKEDEX}/${user.id}`);
       setUserPokemons(response.data);
     };
 

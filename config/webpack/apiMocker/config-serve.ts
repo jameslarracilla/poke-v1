@@ -7,6 +7,10 @@ export const apiMockerServer = (devServer: Server) => {
   }
 
   devServer.app?.use('/user/auth', apiMocker('mocks/auth'));
+  devServer.app?.use(
+    '/pokemon/battlefield/catch/:userId',
+    apiMocker('mocks/battlefield')
+  );
   devServer.app?.use('/pokemon/battlefield', apiMocker('mocks/battlefield'));
-  devServer.app?.use('/pokemon/pokedex', apiMocker('mocks/pokedex'));
+  devServer.app?.use('/pokemon/pokedex/:userId', apiMocker('mocks/pokedex'));
 };

@@ -48,7 +48,10 @@ export const Auth: React.FC<AuthProps> = ({ onLogin }) => {
 
     if (formFields.email === '' || formFields.password === '') return;
 
-    const URL_AUTH = process.env.NODE_ENV === 'development' ? process.env.URL_AUTH as string : '/api/auth';
+    const URL_AUTH =
+      process.env.NODE_ENV === 'development'
+        ? (process.env.URL_AUTH as string)
+        : '/api/auth';
     const response = await axios.post(URL_AUTH, {
       email: formFields.email,
       password: formFields.password,

@@ -10,7 +10,7 @@ import { getColorByType } from '../utils/getPokemonColorByType';
 import { Button } from '../__core__/components/Button';
 import { Text } from '../__core__/components/Text';
 import styled from 'styled-components';
-import { Pokemon } from '../@types';
+import { LoginState, Pokemon } from '../@types';
 import { PokemonType } from '../components/PokemonType';
 import axios from 'axios';
 
@@ -37,17 +37,19 @@ const ButtonFight = styled(Button)`
 `;
 
 interface BattleFieldProps {
-  
-};
+  user: LoginState;
+}
 
-export const BattleField = () => {
+export const BattleField: React.FC<BattleFieldProps> = ({ user }) => {
   const [battlePokemons, setBattlePokemons] = useState<Array<Pokemon>>([]);
 
   const onCatchPokemon = async (pokemonId: string) => {
-    const URL_POKE_CATCH = process.env.NODE_ENV === 'development' ? process.env.URL_POKE_CATCH as string : '/api/battlefield';
-    await axios.post(URL_POKE_CATCH, {
-      id: 'james',
-      pokemonId,
+    const URL_POKE_CATCH =
+      process.env.NODE_ENV === 'development'
+        ? (process.env.URL_POKE_CATCH as string)
+        : '/api/battlefield';
+    await axios.post(`${URL_POKE_CATCH}/${user.id}`, {
+      id: pokemonId,
     });
 
     setBattlePokemons((prevState) =>
@@ -57,7 +59,10 @@ export const BattleField = () => {
 
   useEffect(() => {
     const getBattlefieldPokemons = async () => {
-      const URL_BATTLEFIELD = process.env.NODE_ENV === 'development' ? process.env.URL_BATTLEFIELD as string : '/api/battlefield';
+      const URL_BATTLEFIELD =
+        process.env.NODE_ENV === 'development'
+          ? (process.env.URL_BATTLEFIELD as string)
+          : '/api/battlefield';
       const response = await axios(URL_BATTLEFIELD);
       setBattlePokemons(response.data);
     };

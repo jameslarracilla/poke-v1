@@ -18,8 +18,6 @@ const initLoginState: LoginState = {
 };
 
 const App = () => {
-  console.log(process.env.URL_AUTH);
-
   const [userLogged, setUserLogged] = useState<LoginState>({
     ...initLoginState,
   });
@@ -48,7 +46,7 @@ const App = () => {
               element={
                 <ProtectedRoute
                   conditional={userLogged.isLogged}
-                  ToRender={<BattleField />}
+                  ToRender={<BattleField user={userLogged} />}
                   redirect={'/login'}
                 />
               }
