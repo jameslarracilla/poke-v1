@@ -27,14 +27,14 @@ jobs:
         uses: docker/build-push-action@v3
         with:
           push: true
-          tags: joselarracilla/poke-mon:latest
+          tags: joselarracilla/poke-mon:${{ github.sha }}
           
       -
         name: deploy to cluster
         uses: steebchen/kubectl@v2.0.0
         with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: set image --record deployment/poke-mon-deployment poke-mon=joselarracilla/poke-mon
+          command: set image --record deployment/poke-mon-deployment poke-mon=joselarracilla/poke-mon:${{ github.sha }}
       - 
         name: verify deployment
         uses: steebchen/kubectl@v2.0.0
