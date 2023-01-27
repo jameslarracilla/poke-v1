@@ -32,7 +32,7 @@ export const Levels = () => {
             <CardMedia src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/172.png" />
             <CardHeader>Trainee</CardHeader>
             <CardContent>
-              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero
+              Lorem ipsum dolor sit amet, consectetur adipisicing elit. Liberos
             </CardContent>
           </CardLevel>
         </GridItem>
