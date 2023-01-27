@@ -30,7 +30,7 @@ export const Levels = () => {
         <GridItem xs={12} md={6} lg={4}>
           <CardLevel width="90%">
             <CardMedia src="https://assets.pokemon.com/assets/cms2/img/pokedex/full/172.png" />
-            <CardHeader>Trainee</CardHeader>
+            <CardHeader>Becario</CardHeader>
             <CardContent>
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Liberos
             </CardContent>
