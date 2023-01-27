@@ -34,7 +34,7 @@ jobs:
         uses: steebchen/kubectl@v2.0.0
         with:
           config: ${{ secrets.KUBE_CONFIG_DATA }}
-          command: set image --record deployment/poke-mon-deployment pokemon=joselarracilla/poke-mon
+          command: set image --record deployment/poke-mon-deployment poke-mon=joselarracilla/poke-mon
       - 
         name: verify deployment
         uses: steebchen/kubectl@v2.0.0
