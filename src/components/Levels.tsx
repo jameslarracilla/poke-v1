@@ -25,7 +25,7 @@ const CardLevel = styled(Card)`
 export const Levels = () => {
   return (
     <Container>
-      <SectionTitle>Levels Again</SectionTitle>
+      <SectionTitle>Levels</SectionTitle>
       <GridContainer rowSpacing={2}>
         <GridItem xs={12} md={6} lg={4}>
           <CardLevel width="90%">
